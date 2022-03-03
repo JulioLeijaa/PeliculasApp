@@ -8,19 +8,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       title: 'Peliculas',
       debugShowCheckedModeBanner: false,
       initialRoute: 'home',
       routes: {
-        'home':    (context) => const HomeScreen(),
+        'home': (context) => const HomeScreen(),
         'details': (context) => const DetailsScreen(),
       },
-      theme: ThemeData.light().copyWith(
-        appBarTheme: const AppBarTheme(
-          color: Colors.indigo
-        )
-      ),
+      theme: ThemeData.light()
+          .copyWith(appBarTheme: const AppBarTheme(color: Colors.amber)),
     );
   }
 }
