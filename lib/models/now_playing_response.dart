@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'movie.dart';
 
 class NowPlayingResponse {
-
     NowPlayingResponse({
         required this.dates,
         required this.page,
