@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas_app/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final String movie =
-        ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
+    final String movie = ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
 
     return Scaffold(
         body: CustomScrollView(
@@ -15,6 +15,10 @@ class DetailsScreen extends StatelessWidget {
         SliverList(
           delegate: SliverChildListDelegate([
             const _PosterAndTitle(),
+            const _Overview(),
+            const _Overview(),
+            const _Overview(),
+            const CastingCards(),
           ]),
         ),
       ],
@@ -38,6 +42,7 @@ class _CustomAppBar extends StatelessWidget {
         title: Container(
           width: double.infinity,
           alignment: Alignment.bottomCenter,
+          padding: const EdgeInsets.only(bottom: 10),
           color: Colors.black45,
           child: const Text(
             'movie.title',
@@ -95,6 +100,23 @@ class _PosterAndTitle extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+
+class _Overview extends StatelessWidget {
+  const _Overview({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Text(
+        'Non enim non deserunt aliquip proident amet cillum ea ea voluptate sint incididunt voluptate. Est occaecat pariatur officia veniam nostrud labore aliquip do culpa anim. Cupidatat veniam commodo eiusmod dolor reprehenderit fugiat ad amet voluptate veniam do ad incididunt. Voluptate nisi ullamco dolore id excepteur consequat sunt non culpa. Lorem enim veniam laboris magna voluptate proident ut.',
+        textAlign: TextAlign.justify,
+        style: Theme.of(context).textTheme.subtitle1
       ),
     );
   }
