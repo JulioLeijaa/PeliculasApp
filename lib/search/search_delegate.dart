@@ -3,30 +3,27 @@ import 'package:peliculas_app/models/models.dart';
 import 'package:peliculas_app/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
 
-class MovieSearchDelegate extends SearchDelegate{
-
+class MovieSearchDelegate extends SearchDelegate {
   @override
   String? get searchFieldLabel => 'Buscar pelicula';
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        onPressed: () {
-          query = '';
-        }, 
-        icon: Icon(Icons.clear)
-      )
+          onPressed: () {
+            query = '';
+          },
+          icon: const Icon(Icons.clear))
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        close(context, null);
-      }, 
-      icon: Icon(Icons.arrow_back)
-    );
+        onPressed: () {
+          close(context, null);
+        },
+        icon: const Icon(Icons.arrow_back));
   }
 
   @override
@@ -38,22 +35,21 @@ class MovieSearchDelegate extends SearchDelegate{
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
 
     return FutureBuilder(
-      future: moviesProvider.getMovieSearch(query),
-      builder: ( _, AsyncSnapshot<List<Movie>> snapshot) {
-        if (!snapshot.hasData) return _emptyContainer();
+        future: moviesProvider.getMovieSearch(query),
+        builder: (_, AsyncSnapshot<List<Movie>> snapshot) {
+          if (!snapshot.hasData) return _emptyContainer();
 
-        return ListView.builder(
-          itemCount: snapshot.data!.length,
-          itemBuilder: (_, int index) => _MovieItem(snapshot.data![index])
-        );
-      }
-    );
+          return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (_, int index) => _MovieItem(snapshot.data![index]));
+        });
   }
 
   Widget _emptyContainer() {
     return Container(
       child: const Center(
-        child: Icon(Icons.movie_creation_outlined, color: Colors.black38, size: 130),
+        child: Icon(Icons.movie_creation_outlined,
+            color: Colors.black38, size: 130),
       ),
     );
   }
@@ -67,18 +63,15 @@ class MovieSearchDelegate extends SearchDelegate{
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
 
     return FutureBuilder(
-      future: moviesProvider.getMovieSearch(query),
-      builder: ( _, AsyncSnapshot<List<Movie>> snapshot) {
-        if (!snapshot.hasData) return _emptyContainer();
+        future: moviesProvider.getMovieSearch(query),
+        builder: (_, AsyncSnapshot<List<Movie>> snapshot) {
+          if (!snapshot.hasData) return _emptyContainer();
 
-        return ListView.builder(
-          itemCount: snapshot.data!.length,
-          itemBuilder: (_, int index) => _MovieItem(snapshot.data![index])
-        );
-      }
-    );
+          return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (_, int index) => _MovieItem(snapshot.data![index]));
+        });
   }
-
 }
 
 class _MovieItem extends StatelessWidget {
@@ -92,11 +85,10 @@ class _MovieItem extends StatelessWidget {
       leading: Hero(
         tag: movie.heroId!,
         child: FadeInImage(
-          placeholder: AssetImage('assets/no-image.jpg'),
-          image: NetworkImage(movie.fullPosterImg),
-          width: 50,
-          fit: BoxFit.contain
-        ),
+            placeholder: const AssetImage('assets/no-image.jpg'),
+            image: NetworkImage(movie.fullPosterImg),
+            width: 50,
+            fit: BoxFit.contain),
       ),
       title: Text(movie.title),
       subtitle: Text(movie.originalTitle),
