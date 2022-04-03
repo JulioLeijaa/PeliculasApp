@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
-                labelText: 'Email',
+                labelText: 'Correo',
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.indigo)),
                 focusedBorder: UnderlineInputBorder(
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: passwordController,
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(
-                labelText: 'Password',
+                labelText: 'Contraseña',
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.indigo)),
                 focusedBorder: UnderlineInputBorder(
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   minimumSize: const Size.fromHeight(50),
                   primary: Colors.indigo),
               icon: const Icon(Icons.lock_open, size: 32),
-              label: const Text('Sign In', style: TextStyle(fontSize: 24)),
+              label: const Text('Login', style: TextStyle(fontSize: 24)),
               onPressed: signIn,
             )
           ],

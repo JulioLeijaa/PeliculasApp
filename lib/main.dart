@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:peliculas_app/screens/screens.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,8 @@ Future main() async {
   runApp(const AppState());
 }
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class AppState extends StatelessWidget {
   const AppState({Key? key}) : super(key: key);
 
@@ -20,7 +23,19 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => MoviesProvider(), lazy: false)
       ],
-      child: const MyApp(),
+      child: MaterialApp(
+        navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
+        title: 'Peliculas App',
+        routes: {
+          'login': (context) => const LoginScreen(),
+          'home': (context) => const HomeScreen(),
+          'details': (context) => const DetailsScreen(),
+        },
+        theme: ThemeData.light()
+            .copyWith(appBarTheme: const AppBarTheme(color: Colors.amber)),
+        home: const MyApp(),
+      ),
     );
   }
 }
@@ -30,17 +45,33 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Peliculas',
-      debugShowCheckedModeBanner: false,
-      initialRoute: 'login',
-      routes: {
-        'login': (context) => const LoginScreen(),
-        'home': (context) => const HomeScreen(),
-        'details': (context) => const DetailsScreen(),
-      },
-      theme: ThemeData.light()
-          .copyWith(appBarTheme: const AppBarTheme(color: Colors.amber)),
+    // return MaterialApp(
+    //   title: 'Peliculas',
+    //   debugShowCheckedModeBanner: false,
+    //   initialRoute: 'login',
+    //   routes: {
+    //     'login': (context) => const LoginScreen(),
+    //     'home': (context) => const HomeScreen(),
+    //     'details': (context) => const DetailsScreen(),
+    //   },
+    //   theme: ThemeData.light()
+    //       .copyWith(appBarTheme: const AppBarTheme(color: Colors.amber)),
+    // );
+    return Scaffold(
+      body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return const Center(child: Text('Something went wrong!'));
+          } else if (snapshot.hasData) {
+            return const HomeScreen();
+          } else {
+            return const LoginScreen();
+          }
+        },
+      ),
     );
   }
 }
