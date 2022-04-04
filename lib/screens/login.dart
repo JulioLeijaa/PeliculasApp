@@ -30,19 +30,27 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 40,
             ),
+            Image.asset(
+              'assets/logo.jpg',
+              height: 300,
+            ),
+            const SizedBox(
+              height: 40,
+            ),
             TextField(
               controller: emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
                 labelText: 'Correo',
+                labelStyle: TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.indigo)),
+                    borderSide: BorderSide(color: Colors.white)),
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.indigo),
+                  borderSide: BorderSide(color: Colors.white),
                 ),
                 border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.indigo),
+                  borderSide: BorderSide(color: Colors.white),
                 ),
               ),
             ),
@@ -52,13 +60,14 @@ class _LoginScreenState extends State<LoginScreen> {
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(
                 labelText: 'Contraseña',
+                labelStyle: TextStyle(color: Colors.white),
                 enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.indigo)),
+                    borderSide: BorderSide(color: Colors.white)),
                 focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.indigo),
+                  borderSide: BorderSide(color: Colors.white),
                 ),
                 border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.indigo),
+                  borderSide: BorderSide(color: Colors.white),
                 ),
               ),
               obscureText: true,
@@ -67,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
-                  primary: Colors.indigo),
+                  primary: const Color(0xFF15b8d9)),
               icon: const Icon(Icons.lock_open, size: 32),
               label: const Text('Login', style: TextStyle(fontSize: 24)),
               onPressed: signIn,
@@ -75,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF032541),
     );
   }
 

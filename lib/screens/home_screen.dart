@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
+        backgroundColor: const Color(0xFF032541),
         title: const Text('Peliculas en cines'),
         centerTitle: true,
         elevation: 0,
